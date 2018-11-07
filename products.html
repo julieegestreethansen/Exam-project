@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <title> The Amazing Coffe-e-Shop - Home</title>
+
+    </head>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+    <body a link="black" vlink="black">
+        <center><h1><a href="index.html"> The Amazing Coffe-e-Shop</a></h1></center>
+
+        <!-- Menu goes here-->
+        <center><a href="index.html">Home</a>   -   
+            <a href="#">Products</a>   -  
+            <a href="tutorial.html">Shopping Cart</a>   -   
+            <a href="myaccount.html">My Account</a></center>
+
+            <center>
+                    <h2>Products</h2>
+            </center>
+            <div>
+                    <ul>
+                        <li><a class="add-to-cart" href="#" data-name="Blue Java" data-price="3.99">Blue Java - $3.99</a></li>
+                        <li><a class="add-to-cart" href="#" data-name="Kopi Luwak" data-price="6.99">Kopi Luwak - $6.99</a></li>
+                        <li><a class="add-to-cart" href="#" data-name="Dirt" data-price="0.39">Dirt- $0.39</a></li>
+                        <li><a class="add-to-cart" href="#" data-name="Cheap stuff for the office" data-price="1.99">Cheap stuff for the office- $1.99</a></li>
+                    </ul>
+                </div>
+                <script src="tutorial.js"></script>
+        
+               <script>
+        
+        $(".add-to-cart").click(function(event){
+            event.preventDefault(); // default is # which takes u to the top of the site
+            var name =  $(this).attr("data-name");
+            var price = Number($(this).attr("data-price"));
+            coffeeShoppingCart.addItemToCart(name, price, 1);
+        });
+        
+        /* so the .on function makes jquery wait for a "click" event on 
+        show-cart and if it occured on an item that meets "delete-item", 
+        we will execute the function within.
+        */
+            
+        
+        
+        
+              </script>
+        
+
+    </body>
+
+
+
+</html>

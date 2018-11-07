@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <title>The Amazing Coffe-e-Shop - Shopping Cart</title>
+    </head>
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+    <body a link="black" vlink="black">
+        <center><h1><a href="index.html"> The Amazing Coffe-e-Shop</a></h1></center>
+       
+
+        <!-- Menu goes here-->
+        <center><a href="index.html">Home</a>   -   
+        <a href="products.html">Products</a>   -  
+        <a href="#">Shopping Cart</a>   -   
+        <a href="myaccount.html">My Account</a></center>
+
+        <center>
+            <h2>Shopping cart</h2>
+        </center>
+
+        <div>
+            <button id="clear-cart">Clear cart</button>
+        </div>
+
+        <div>
+            <ul id="show-cart">
+                <!-- -->
+            </ul>
+            <div>You have <span id="count-cart">X</span> items in your cart.</div>
+            <div> Total Cart: $<span id="total-cart"></span></div>
+            <button><a href="confirmation.html">Proceed to checkout with your order.</a></button>
+        </div>
+        <script src="tutorial.js"></script>
+
+       <script>
+
+$("#clear-cart").click(function(event){
+    coffeeShoppingCart.clearCart();
+    displayCart();
+});
+
+function displayCart() {
+    var cartArray = coffeeShoppingCart.listCart();
+    var output = "";
+    for (var i in cartArray) {
+        output += "<li>"
+            + cartArray[i].name 
+            + " <input class='item-count' type='number' data-name='"+ cartArray[i].name +"' value= '"+ cartArray[i].count+"'>" 
+            + " - Price: $" + cartArray[i].total
+            + " <button class='delete-item' data-name='"+ cartArray[i].name +"'>-</button>"
+            + " <button class='add-item' data-name='"+ cartArray[i].name +"'>+</button>"
+            + " <button class='delete-all-items' data-name='"+ cartArray[i].name +"'>X</button>"
+            + "</li>"
+    }
+    $("#show-cart").html(output);
+    $("#count-cart").html(coffeeShoppingCart.countCart());
+    $("#total-cart").html(coffeeShoppingCart.totalCart());
+}
+/* so the .on function makes jquery wait for a "click" event on 
+show-cart and if it occured on an item that meets "delete-item", 
+we will execute the function within.
+*/
+ $("#show-cart").on("click", ".delete-all-items", function(event) {
+     var name = $(this).attr("data-name");
+     coffeeShoppingCart.removeItemFromCartAll(name);
+     displayCart();
+ });
+
+  $("#show-cart").on("click", ".delete-item", function(event) {
+     var name = $(this).attr("data-name");
+    coffeeShoppingCart.removeItemFromCart(name);
+     displayCart();
+ });
+ 
+$("#show-cart").on("click", ".add-item", function(event) {
+     var name = $(this).attr("data-name");
+     coffeeShoppingCart.addItemToCart(name, 0 , 1); //requires 3 parameters, so all need to be filled in, but if the name matches it will just add one to count (see addItem function)
+     displayCart();
+ });  
+
+ $("#show-cart").on("change", ".item-count", function(event) {
+     var name = $(this).attr("data-name");
+     var count = Number($(this).val());
+     coffeeShoppingCart.setCountForItem(name, count);
+     displayCart();
+ });
+    
+
+displayCart();
+
+      </script>
+
+
+    </body>
+</html>

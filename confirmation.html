@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+        <title> The Amazing Coffe-e-Shop - Order Confirmation</title>
+
+    </head>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+    <body a link="black" vlink="black">
+        <center>
+            <h1><a href="index.html"> The Amazing Coffe-e-Shop</a></h1>
+
+                <!-- Menu goes here-->
+        <center><a href="index.html">Home</a>   -   
+            <a href="products.html">Products</a>   -  
+            <a href="#">Shopping Cart</a>   -   
+            <a href="myaccount.html">My Account</a></center>
+
+            <h2>Confirm your order</h2>
+            <p> Please confirm your order,<br />
+            to proceed to the checkout.</p>
+    </center>
+
+    <div>
+            <ul id="show-cart">
+                <!-- -->
+            </ul>
+            <div>You have <span id="count-cart">X</span> items in your cart.</div>
+            <div> Total Cart: $<span id="total-cart"></span></div>
+        </div>
+        <script src="tutorial.js"></script>
+
+       <script>
+
+function displayCart() {
+    var cartArray = coffeeShoppingCart.listCart();
+    var output = "";
+    for (var i in cartArray) {
+        output += "<li>"
+            + cartArray[i].name 
+            + " x " + cartArray[i].count
+            + "  -  Price: $" + cartArray[i].total
+            + "</li>"
+    }
+    $("#show-cart").html(output);
+    $("#count-cart").html(coffeeShoppingCart.countCart());
+    $("#total-cart").html(coffeeShoppingCart.totalCart());
+}
+/* so the .on function makes jquery wait for a "click" event on 
+show-cart and if it occured on an item that meets "delete-item", 
+we will execute the function within.
+*/
+
+    
+
+displayCart();
+
+      </script>
+        
+    </body>
+
+
+
+</html>
